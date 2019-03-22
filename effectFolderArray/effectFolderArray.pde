@@ -13,15 +13,15 @@ color whiteGrad15 = color(255, 15);
 color whiteGrad5 = color(255, 5);
 color whiteSolid = color(255);
 
-int spacing = 20;
+int spacing = 100;
 int iteration;
 
-PShape folder, folderBody, folderTab;
+Folder folder0;
 
 void setup() {
-   size(400, 400);
+   size(1000, 1000);
    iteration = width / spacing;
-   drawFolder(width/2, height/2, 0, 0);
+   folder0 = new Folder(60, 40);
 }
 
 void draw() {
@@ -29,39 +29,19 @@ void draw() {
    
    noFill();
    stroke(whiteSolid);
-   for(int x=0; x <= width; x+=spacing){
-      for(int y=0; y <= height; y+=spacing){
+   for(int x=spacing; x < width; x+=spacing){
+      for(int y=spacing; y < height; y+=spacing){
          
          point(x, y);
          //println("(" + x + ", " + y + ")");
+         folder0.drawGeo(x, y);
       }
       
    }
    
    pushMatrix();
-   shape(folder);
+   translate(width/2, height/2);
    
    popMatrix();
    
-}
-
-
-void drawFolder(int x, int y, int w, int h){
-  
-  
-  pushMatrix();
-  translate(x, y);
-  
-  folder = createShape(GROUP);
-  
-  rectMode(CENTER);
-  folderBody = createShape(RECT, 0, 0, 80, 40);
-  folderBody.setFill(whiteSolid);
-  folderTab = createShape(RECT, -40, -30, -20, -20);
-  folderBody.setFill(whiteSolid);
-  
-  folder.addChild(folderBody);
-  folder.addChild(folderTab);
-  
-  popMatrix();
 }
