@@ -13,10 +13,14 @@ color whiteGrad15 = color(255, 15);
 color whiteGrad5 = color(255, 5);
 color whiteSolid = color(255);
 
-int spacing = 200;
+
+// Confirmed with specific spacing intervals: 100, 200, 250, 500
+// Since it is divided by width, it requires certain intervals
+// to generate an appropriate matrix structure
+int spacing = 500;
 int iteration;
 int index = 0;
-int row;
+int col, row;
 
 Folder[] folders;
 PVector[] targetPos;
@@ -25,9 +29,11 @@ PVector[] targetPos;
 
 void setup() {
    size(1000, 1000);
-   iteration = width / spacing;
+   iteration = width / spacing - 1;
+   println("Iterations: " + iteration);
    folders = new Folder[iteration * iteration];
    //folder0 = new Folder(60, 40);
+   col = 1;
    row = 1;
    
    println("Folder Length: " + folders.length);
@@ -41,9 +47,10 @@ void setup() {
          //folder0.drawGeo(x, y);
          folders[index] = new Folder(60, 40, x, y);
          index++;
+         col++;
       }
       
-      index = (iteration - 1) * row;
+      index = (iteration) * row;
       row++;
       println("Post index[" + index + "]");
       
@@ -76,6 +83,11 @@ void draw() {
       index++;
    }
    **/
+   
+   //for(int i=0; i < folders.length; i++){
+      //folders[i].drawGeo();
+   //}
+   
    
    pushMatrix();
    translate(width/2, height/2);
