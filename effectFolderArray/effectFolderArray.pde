@@ -13,15 +13,42 @@ color whiteGrad15 = color(255, 15);
 color whiteGrad5 = color(255, 5);
 color whiteSolid = color(255);
 
-int spacing = 100;
+int spacing = 400;
 int iteration;
+int index = 0;
 
-Folder folder0;
+Folder[] folders;
+PVector[] targetPos;
+
+//Folder folder0;
 
 void setup() {
    size(1000, 1000);
    iteration = width / spacing;
-   folder0 = new Folder(60, 40);
+   folders = new Folder[iteration * 2];
+   //folder0 = new Folder(60, 40);
+   
+   println("Index Length: " + folders.length);
+   
+   for(int x=spacing; x < width; x+=spacing){
+      println("Pre index[" + index + "]");
+      for(int y=spacing; y < height; y+=spacing){
+         
+         //point(x, y);
+         println("index[" + index + "]: (" + x + ", " + y + ")");
+         //folder0.drawGeo(x, y);
+         folders[index] = new Folder(60, 40, x, y);
+         index++;
+      }
+      
+      index = iteration;
+      println("Post index[" + index + "]");
+      
+   }
+
+
+   
+   
 }
 
 void draw() {
@@ -29,15 +56,23 @@ void draw() {
    
    noFill();
    stroke(whiteSolid);
+   /**
    for(int x=spacing; x < width; x+=spacing){
       for(int y=spacing; y < height; y+=spacing){
          
          point(x, y);
          //println("(" + x + ", " + y + ")");
-         folder0.drawGeo(x, y);
+         //folder0.drawGeo(x, y);
+         folders[index].drawGeo(x, y);
       }
-      
    }
+   if(index == iteration){
+      index = 0;
+   }
+   else{
+      index++;
+   }
+   **/
    
    pushMatrix();
    translate(width/2, height/2);

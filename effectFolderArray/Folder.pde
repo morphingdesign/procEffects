@@ -2,15 +2,19 @@
 class Folder {
 
   float rectRad = 5;
+  float targetXPos, targetYPos;
   int folderW, folderH;
   int offset = 1;
+  boolean selectFolder;
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Constructor
   // 
-  Folder(int folderW, int folderH, boolean selectFolder) {
+  Folder(int folderW, int folderH, float targetXPos, float targetYPos) {
     this.folderW = folderW;
     this.folderH = folderH;
+    this.targetXPos = targetXPos;
+    this.targetYPos = targetYPos;
   }
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,9 +22,10 @@ class Folder {
   
   // *******************************************************
   // 
-  void drawGeo(float x, float y, boolean selectFolder){
+  void drawGeo(){
+    
     pushMatrix();
-    translate(x, y);
+    translate(targetXPos, targetYPos);
     
     noStroke();
     rectMode(CENTER);
@@ -41,4 +46,10 @@ class Folder {
     rect(-folderW/2 + offset, -folderH/2-7 + offset, folderW/3 - offset * 2, folderH/5 - offset, rectRad, rectRad, 0, 0);
     popMatrix();
   }
+  
+  void select(boolean selectFolder){
+    this.selectFolder = selectFolder;
+    
+  }
+  
 }
