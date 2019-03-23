@@ -13,9 +13,10 @@ color whiteGrad15 = color(255, 15);
 color whiteGrad5 = color(255, 5);
 color whiteSolid = color(255);
 
-int spacing = 400;
+int spacing = 200;
 int iteration;
 int index = 0;
+int row;
 
 Folder[] folders;
 PVector[] targetPos;
@@ -25,10 +26,11 @@ PVector[] targetPos;
 void setup() {
    size(1000, 1000);
    iteration = width / spacing;
-   folders = new Folder[iteration * 2];
+   folders = new Folder[iteration * iteration];
    //folder0 = new Folder(60, 40);
+   row = 1;
    
-   println("Index Length: " + folders.length);
+   println("Folder Length: " + folders.length);
    
    for(int x=spacing; x < width; x+=spacing){
       println("Pre index[" + index + "]");
@@ -41,7 +43,8 @@ void setup() {
          index++;
       }
       
-      index = iteration;
+      index = (iteration - 1) * row;
+      row++;
       println("Post index[" + index + "]");
       
    }
