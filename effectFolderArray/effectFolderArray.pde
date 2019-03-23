@@ -17,7 +17,7 @@ color whiteSolid = color(255);
 // Confirmed with specific spacing intervals: 100, 200, 250, 500
 // Since it is divided by width, it requires certain intervals
 // to generate an appropriate matrix structure
-int spacing = 500;
+int spacing = 100;
 int iteration;
 int index = 0;
 int col, row;
@@ -84,9 +84,22 @@ void draw() {
    }
    **/
    
-   //for(int i=0; i < folders.length; i++){
-      //folders[i].drawGeo();
-   //}
+   //randomSeed(0);
+   int selectIndex;
+   //randomSeed(1);
+   int deselectIndex;
+   
+   selectIndex = int(random(0, folders.length));
+      deselectIndex = int(random(0, folders.length));
+   
+   for(int i=0; i < folders.length; i++){
+      folders[i].drawGeo();
+      
+      
+      
+      folders[selectIndex].select(true);
+      folders[deselectIndex].select(false);
+   }
    
    
    pushMatrix();
