@@ -9,62 +9,36 @@ class FolderArray {
   int index = 0;
   int col, row;
   Folder[] folders;
-  
-
-      
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Constructor
   // 
   FolderArray() {
-  iteration = width / spacing - 1;
-     //println("Iterations: " + iteration);
-     folders = new Folder[iteration * iteration];
-  
-     col = 1;
-     row = 1;
-     
-     //println("Folder Length: " + folders.length);
-     
-     for(int x=spacing; x < width; x+=spacing){
-        //println("Pre index[" + index + "]");
-        for(int y=spacing; y < height; y+=spacing){
-           
-  
-           //println("index[" + index + "]: (" + x + ", " + y + ")");
-  
-           folders[index] = new Folder(60, 40, 100, 100, x, y);
-           index++;
-           col++;
-        }
-        
-        index = (iteration) * row;
-        row++;
-        //println("Post index[" + index + "]");
-        
-     }
-
+    iteration = width / spacing - 1;
+    folders = new Folder[iteration * iteration];
+    col = 1;
+    row = 1;
+    for(int x=spacing; x < width; x+=spacing){
+      for(int y=spacing; y < height; y+=spacing){
+         folders[index] = new Folder(60, 40, 100, 100, x, y);
+         index++;
+         col++;
+      }
+      index = (iteration) * row;
+      row++;   
+    }
   }
-  
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Methods
   
   // *******************************************************
   // 
-  
   void drawArray(){
      noFill();
      stroke(whiteSolid);
-  
-     
      for(int i=0; i < folders.length; i++){
-  
         folders[i].drawStart();
-  
      }
-    
-   
   }
-  
 }

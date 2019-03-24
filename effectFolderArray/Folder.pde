@@ -1,8 +1,6 @@
 // Class for folder construction
 class Folder {
 
-  
-  
   float rectRad = 5;
   float origXPos;
   float origYPos;
@@ -17,7 +15,6 @@ class Folder {
   float moveXPos;
   float moveYPos;
       
-
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Constructor
   // 

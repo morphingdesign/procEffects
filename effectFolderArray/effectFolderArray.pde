@@ -13,79 +13,14 @@ color whiteGrad15 = color(255, 15);
 color whiteGrad5 = color(255, 5);
 color whiteSolid = color(255);
 
-
-// Confirmed with specific spacing intervals: 100, 200, 250, 500
-// Since it is divided by width, it requires certain intervals
-// to generate an appropriate matrix structure
-//int spacing = 100;
-//int iteration;
-//int index = 0;
-//int col, row;
-
-
-//Folder[] folders;
-
 FolderArray folderStructure;
 
 void setup() {
-   size(1000, 1000);
-   
+   size(1000, 1000);  
    folderStructure = new FolderArray();
-   
-   /**
-   iteration = width / spacing - 1;
-   //println("Iterations: " + iteration);
-   folders = new Folder[iteration * iteration];
-
-   col = 1;
-   row = 1;
-   
-   //println("Folder Length: " + folders.length);
-   
-   for(int x=spacing; x < width; x+=spacing){
-      //println("Pre index[" + index + "]");
-      for(int y=spacing; y < height; y+=spacing){
-         
-
-         //println("index[" + index + "]: (" + x + ", " + y + ")");
-
-         folders[index] = new Folder(60, 40, 100, 100, x, y);
-         index++;
-         col++;
-      }
-      
-      index = (iteration) * row;
-      row++;
-      //println("Post index[" + index + "]");
-      
-   }
-  **/
-
-   
-   
 }
 
 void draw() {
    background(blackSolid);
-   
-   /**
-   noFill();
-   stroke(whiteSolid);
-
-   
-   for(int i=0; i < folders.length; i++){
-
-      folders[i].drawStart();
-
-   }
-   **/
-   
    folderStructure.drawArray();
-   
-   
-   pushMatrix();
-   translate(width/2, height/2);
-   
-   popMatrix();
-   
 }
