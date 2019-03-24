@@ -6,6 +6,7 @@ class Folder {
   int folderW, folderH;
   int offset = 1;
   boolean selectFolder;
+  boolean expand;
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Constructor
@@ -22,11 +23,29 @@ class Folder {
   
   // *******************************************************
   // 
-  void drawGeo(){
-    
+  
+  void expandSingle(int numOfFolders){
     pushMatrix();
     translate(targetXPos, targetYPos);
+    if(expand){
+      for(int i=-2; i <= numOfFolders-2; i++){
+         drawSingle(-i * 6, i * 6);
+      }   
+    }
+    else{
+      drawSingle(0, 0);  
+    }
     
+    
+    popMatrix();
+  }
+  
+  
+  void drawSingle(int offsetPosX, int offsetPosY){
+    
+    pushMatrix();
+    //translate(targetXPos, targetYPos);
+    translate(offsetPosX, offsetPosY);
     noStroke();
     rectMode(CENTER);
     fill(whiteSolid);
@@ -46,10 +65,16 @@ class Folder {
     rect(-folderW/2 + offset, -folderH/2-7 + offset, folderW/3 - offset * 2, folderH/5 - offset, rectRad, rectRad, 0, 0);
     popMatrix();
   }
+
+  
   
   void select(boolean selectFolder){
     this.selectFolder = selectFolder;
     
+  }
+  
+  void expand(boolean expand){
+    this.expand = expand;
   }
   
 }

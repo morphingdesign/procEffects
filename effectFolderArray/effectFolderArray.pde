@@ -93,12 +93,15 @@ void draw() {
       deselectIndex = int(random(0, folders.length));
    
    for(int i=0; i < folders.length; i++){
-      folders[i].drawGeo();
+      folders[i].expandSingle(5);
       
       
       
       folders[selectIndex].select(true);
       folders[deselectIndex].select(false);
+      
+      folders[selectIndex].expand(true);
+      folders[deselectIndex].expand(false);
    }
    
    
