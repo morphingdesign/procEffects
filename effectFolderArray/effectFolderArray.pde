@@ -17,42 +17,43 @@ color whiteSolid = color(255);
 // Confirmed with specific spacing intervals: 100, 200, 250, 500
 // Since it is divided by width, it requires certain intervals
 // to generate an appropriate matrix structure
-int spacing = 100;
+int spacing = 250;
 int iteration;
 int index = 0;
 int col, row;
 
+
 Folder[] folders;
-PVector[] targetPos;
+// PVector[] targetPos;
 
 //Folder folder0;
 
 void setup() {
    size(1000, 1000);
    iteration = width / spacing - 1;
-   println("Iterations: " + iteration);
+   //println("Iterations: " + iteration);
    folders = new Folder[iteration * iteration];
    //folder0 = new Folder(60, 40);
    col = 1;
    row = 1;
    
-   println("Folder Length: " + folders.length);
+   //println("Folder Length: " + folders.length);
    
    for(int x=spacing; x < width; x+=spacing){
-      println("Pre index[" + index + "]");
+      //println("Pre index[" + index + "]");
       for(int y=spacing; y < height; y+=spacing){
          
          //point(x, y);
-         println("index[" + index + "]: (" + x + ", " + y + ")");
+         //println("index[" + index + "]: (" + x + ", " + y + ")");
          //folder0.drawGeo(x, y);
-         folders[index] = new Folder(60, 40, x, y);
+         folders[index] = new Folder(60, 40, 100, 100, x, y);
          index++;
          col++;
       }
       
       index = (iteration) * row;
       row++;
-      println("Post index[" + index + "]");
+      //println("Post index[" + index + "]");
       
    }
 
@@ -93,15 +94,16 @@ void draw() {
       deselectIndex = int(random(0, folders.length));
    
    for(int i=0; i < folders.length; i++){
-      folders[i].expandSingle(5);
+      //folders[i].expandOrig();
+      folders[i].drawFolder();
       
       
       
       folders[selectIndex].select(true);
       folders[deselectIndex].select(false);
       
-      folders[selectIndex].expand(true);
-      folders[deselectIndex].expand(false);
+      folders[selectIndex].expandF(true);
+      folders[deselectIndex].expandF(false);
    }
    
    
