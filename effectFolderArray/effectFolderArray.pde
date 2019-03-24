@@ -17,17 +17,22 @@ color whiteSolid = color(255);
 // Confirmed with specific spacing intervals: 100, 200, 250, 500
 // Since it is divided by width, it requires certain intervals
 // to generate an appropriate matrix structure
-int spacing = 100;
-int iteration;
-int index = 0;
-int col, row;
+//int spacing = 100;
+//int iteration;
+//int index = 0;
+//int col, row;
 
 
-Folder[] folders;
+//Folder[] folders;
 
+FolderArray folderStructure;
 
 void setup() {
    size(1000, 1000);
+   
+   folderStructure = new FolderArray();
+   
+   /**
    iteration = width / spacing - 1;
    //println("Iterations: " + iteration);
    folders = new Folder[iteration * iteration];
@@ -54,7 +59,7 @@ void setup() {
       //println("Post index[" + index + "]");
       
    }
-
+  **/
 
    
    
@@ -63,6 +68,7 @@ void setup() {
 void draw() {
    background(blackSolid);
    
+   /**
    noFill();
    stroke(whiteSolid);
 
@@ -72,6 +78,9 @@ void draw() {
       folders[i].drawStart();
 
    }
+   **/
+   
+   folderStructure.drawArray();
    
    
    pushMatrix();
