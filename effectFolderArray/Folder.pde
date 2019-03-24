@@ -10,7 +10,7 @@ class Folder {
   int folderW, folderH;
   int offset = 1;
   boolean selectFolder;
-  boolean expand;
+  boolean expand, collapse;
   boolean mouseOverOrig = false;
   boolean mouseOverTarget = false;
   int numOfFolders = 5;
@@ -50,14 +50,23 @@ class Folder {
       translate(origXPos, origYPos);
     }
     
-    if(expand){
+    if(expand && !collapse){
       for(int i=-2; i <= numOfFolders-2; i++){
          drawSingle(-i * 6, i * 6);
-      }   
+      }
+    }
+    else if(!expand && collapse){
+      drawSingle(0, 0); 
     }
     else{
-      drawSingle(0, 0);  
-    }
+      drawSingle(0, 0);
+    }       
+    
+    
+    
+
+    
+    
     popMatrix();
   }
   
@@ -88,13 +97,6 @@ class Folder {
 
   
   
-  void select(boolean selectFolder){
-    this.selectFolder = selectFolder;
-  }
-  
-  void expandF(boolean expand){
-    this.expand = expand;
-  }
   
   void mouseOverOrigTest(){
     if(mouseX > origXPos - folderW / 2 && mouseX < origXPos + folderW / 2 && mouseY > origYPos - folderH / 2 && mouseY < origYPos + folderH / 2){
@@ -105,12 +107,17 @@ class Folder {
   }
   
   void mouseOverTargetTest(){
-    if(mouseX > targetXPos - folderW / 2 && mouseX < targetXPos + folderW / 2 && mouseY > targetYPos - folderH / 2 && mouseY < targetYPos + folderH / 2){
+    if(mouseX > targetXPos - folderW / 2 && mouseX < targetXPos + folderW / 2 && mouseY > targetYPos - folderH / 2 && mouseY < targetYPos + folderH / 2 && !expand){
         mouseOverTarget = true;
         selectFolder = true;
       if(mousePressed){
-        expand = true;
-      }  
+        if(!expand){
+           expand = true;
+        }
+        else{
+           collapse = true;
+        }
+      }
     }
     else{
        selectFolder = false;

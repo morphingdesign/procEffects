@@ -24,16 +24,14 @@ int col, row;
 
 
 Folder[] folders;
-// PVector[] targetPos;
 
-//Folder folder0;
 
 void setup() {
    size(1000, 1000);
    iteration = width / spacing - 1;
    //println("Iterations: " + iteration);
    folders = new Folder[iteration * iteration];
-   //folder0 = new Folder(60, 40);
+
    col = 1;
    row = 1;
    
@@ -43,9 +41,9 @@ void setup() {
       //println("Pre index[" + index + "]");
       for(int y=spacing; y < height; y+=spacing){
          
-         //point(x, y);
+
          //println("index[" + index + "]: (" + x + ", " + y + ")");
-         //folder0.drawGeo(x, y);
+
          folders[index] = new Folder(60, 40, 100, 100, x, y);
          index++;
          col++;
@@ -67,44 +65,12 @@ void draw() {
    
    noFill();
    stroke(whiteSolid);
-   /**
-   for(int x=spacing; x < width; x+=spacing){
-      for(int y=spacing; y < height; y+=spacing){
-         
-         point(x, y);
-         //println("(" + x + ", " + y + ")");
-         //folder0.drawGeo(x, y);
-         folders[index].drawGeo(x, y);
-      }
-   }
-   if(index == iteration){
-      index = 0;
-   }
-   else{
-      index++;
-   }
-   **/
-   
-   //randomSeed(0);
-   //int selectIndex = 0;
-   //randomSeed(1);
-   //int deselectIndex;
-   
-   //selectIndex = int(random(0, folders.length));
-      //deselectIndex = int(random(0, folders.length));
+
    
    for(int i=0; i < folders.length; i++){
-      //folders[i].expandOrig();
+
       folders[i].drawStart();
-      
-      //folders[selectIndex].select(true);
-      //folders[deselectIndex].select(false);
-      //selectIndex++;
-      
-      
-      
-      //folders[selectIndex].expandF(true);
-      //folders[deselectIndex].expandF(false);
+
    }
    
    
