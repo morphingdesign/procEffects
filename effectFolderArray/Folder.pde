@@ -25,8 +25,8 @@ class Folder {
     this.targetYPos = targetYPos;
     this.origXPos = origXPos;
     this.origYPos = origYPos;
-    origXPos = moveXPos;
-    origYPos = moveYPos;
+    moveXPos = origXPos;
+    moveYPos = origYPos;
   }
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,8 +40,8 @@ class Folder {
     
     pushMatrix();
     if(mouseOverOrig){
-      //moveOrig(); 
-      translate(targetXPos, targetYPos);
+      moveOrig(); 
+      //translate(targetXPos, targetYPos);
     }
     else{
       translate(origXPos, origYPos);
@@ -105,17 +105,35 @@ class Folder {
   
   void moveOrig(){
 
-    //while(origXPos != targetXPos){
-
-      
-    translate(moveXPos, moveYPos);
-    println("Orig: " + moveXPos + ", " + moveYPos);
-    moveXPos++;
-    moveYPos++;
-    println("Target: " + targetXPos + ", " + targetYPos);
-    //origXPos+=increment;
-    //}
     
+
+     
+    translate(moveXPos, moveYPos);
+     
+    println("Orig: " + moveXPos + ", " + moveYPos);
+    
+    
+    if(moveXPos == targetXPos){
+       moveXPos = targetXPos;
+    }
+    else{
+       moveXPos++;
+    }
+    
+    if(moveYPos == targetYPos){
+       moveYPos = targetYPos;
+    }
+    else{
+       moveYPos++;
+    }    
+    
+    
+    println("Target: " + targetXPos + ", " + targetYPos);
+
+
+    
+    
+
     
     
     

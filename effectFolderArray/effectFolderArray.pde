@@ -99,11 +99,11 @@ void draw() {
       
       
       
-      folders[selectIndex].select(true);
-      folders[deselectIndex].select(false);
+      //folders[selectIndex].select(true);
+      //folders[deselectIndex].select(false);
       
-      folders[selectIndex].expandF(true);
-      folders[deselectIndex].expandF(false);
+      //folders[selectIndex].expandF(true);
+      //folders[deselectIndex].expandF(false);
    }
    
    
