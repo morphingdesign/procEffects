@@ -1,6 +1,8 @@
 // Class for folder construction
 class Folder {
 
+  
+  
   float rectRad = 5;
   float origXPos;
   float origYPos;
@@ -10,6 +12,7 @@ class Folder {
   boolean selectFolder;
   boolean expand;
   boolean mouseOverOrig = false;
+  boolean mouseOverTarget = false;
   int numOfFolders = 5;
   float moveXPos;
   float moveYPos;
@@ -35,13 +38,13 @@ class Folder {
   // *******************************************************
   // 
   
-  void drawFolder(){
-    expandOrig();
+  void drawStart(){
+    mouseOverOrigTest();
     
     pushMatrix();
     if(mouseOverOrig){
       moveOrig(); 
-      //translate(targetXPos, targetYPos);
+      mouseOverTargetTest();
     }
     else{
       translate(origXPos, origYPos);
@@ -87,64 +90,51 @@ class Folder {
   
   void select(boolean selectFolder){
     this.selectFolder = selectFolder;
-    
   }
   
   void expandF(boolean expand){
     this.expand = expand;
   }
   
-  void expandOrig(){
+  void mouseOverOrigTest(){
     if(mouseX > origXPos - folderW / 2 && mouseX < origXPos + folderW / 2 && mouseY > origYPos - folderH / 2 && mouseY < origYPos + folderH / 2){
       if(mousePressed){
         mouseOverOrig = true;
-        
       }  
     }
   }
   
+  void mouseOverTargetTest(){
+    if(mouseX > targetXPos - folderW / 2 && mouseX < targetXPos + folderW / 2 && mouseY > targetYPos - folderH / 2 && mouseY < targetYPos + folderH / 2){
+        mouseOverTarget = true;
+        selectFolder = true;
+      if(mousePressed){
+        expand = true;
+      }  
+    }
+    else{
+       selectFolder = false;
+    }
+  }
+  
   void moveOrig(){
-
-    
-
-     
+    // Speed needs to be multiple of the array
+    // The following have been confirmed: 1, 2, 5, 10
+    float speed = 10;
     translate(moveXPos, moveYPos);
-     
-    println("Orig: " + moveXPos + ", " + moveYPos);
-    
-    
+    //println("Orig: " + moveXPos + ", " + moveYPos);
     if(moveXPos == targetXPos){
        moveXPos = targetXPos;
     }
     else{
-       moveXPos++;
+       moveXPos = moveXPos + speed;
     }
-    
     if(moveYPos == targetYPos){
        moveYPos = targetYPos;
     }
     else{
-       moveYPos++;
+       moveYPos = moveYPos + speed;
     }    
-    
-    
-    println("Target: " + targetXPos + ", " + targetYPos);
-
-
-    
-    
-
-    
-    
-    
-    //translate(targetXPos, targetYPos);
-    //for(x=origXPos; x <= targetXPos; x++){
-       //float xPos = map(x, 0, maxXPos, moveXPos, targetXPos);
-       //float yPos = map(moveYPos, 0, 100, 0, height);
-       //origXPos = xPos;
-       //origYPos = 0;     
-       //translate(x, 500);
-       //println(x);
-    //}
+    //println("Target: " + targetXPos + ", " + targetYPos);
   }
 }
