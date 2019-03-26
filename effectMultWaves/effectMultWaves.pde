@@ -35,17 +35,25 @@ void draw() {
   
   pushMatrix();
   translate(0, height/2);
-  //drawCurveArray(numOfCurves, curveOffset, 200);
-  //drawCurveArray(numOfCurves, curveOffset, 150);
-  //drawCurveArray(numOfCurves, curveOffset, 100);
+  drawCurveArray(numOfCurves, curveOffset, 200);
   drawCurveArray(numOfCurves, curveOffset, 50);
   popMatrix();
+  
+  
+  pushMatrix();
+  translate(0, height/4);
+  //drawCurveArray(numOfCurves, curveOffset, 200);
+  drawCurveArray(numOfCurves, curveOffset, 150);
+  drawCurveArray(numOfCurves, curveOffset, 100);
+  //drawCurveArray(numOfCurves, curveOffset, 50);
+  popMatrix();
+  
 
   pushMatrix();
   translate(0, 0);
   println(var);
   textAlign(LEFT, TOP);
-  text(var, 20, 20);
+  text("BPM: " + var, 20, 20);
   popMatrix();   
   
 }
