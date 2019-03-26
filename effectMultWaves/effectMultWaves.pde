@@ -13,6 +13,11 @@ color whiteGrad15 = color(255, 15);
 color whiteGrad5 = color(255, 5);
 color whiteSolid = color(255);
 
+
+float curveH = 0;
+float var = 0;
+float shiftH = 0;
+
 void setup() {
    size(1000, 1000);
    frameRate(10);
@@ -54,7 +59,7 @@ void drawCurve(int alpha){
   float freq;
   
   float freqH;
-  float curveH;
+  
   
   noFill();
   stroke(whiteSolid);
@@ -64,35 +69,60 @@ void drawCurve(int alpha){
   float yList[] = new float[arrayLength];
   
   for(int i=0; i < arrayLength; i++){
-     shift = int(random(0, 1));
+     shift = int(random(1, 1));
      freq = (random(1, 1));
-     //freqH = random(0, 0);
+     
+     freqH = 50;
+     //freqH = random(-50, 50);
+     /**
      if(second()%2 == 0){
         freqH = 50;
+     }
+     else if(second()%5 == 0){
+        freqH = -50;
      }
      else{
         freqH = 0;
      }
+     **/
      
-     curveH = random(0, 50);
+     //curveH = random(0, 0);
+     //curveH++;
+     if(curveH == 200){
+        curveH = 0;
+     }
+     else{
+        curveH+=1;
+     }
+     
+     //curveH = 1;
+     
      xList[i] = scalar * i;
+     var = 63;
+     shiftH++;
      
      // Eq. for typical sin curve 
      //yList[i] = scalar * (sin(i * freq) + shift);
+     
+     yList[i] = pow(sin(i), var) * sin(i + curveH) * freqH + shiftH;
      
      // Eq. for ekg graph
      //yList[i] = pow(sin(i), 63) * sin(i + curveH) * freqH;
      // Source: https://mathoverflow.net/questions/119280/is-there-any-heartbeat-like-function
      // sin(x)^63 * sin(x+1.5)*8
      
+     // Eq. for varying wave
+     /**
      float a = 0.2;
      float d = 1.4;
      float h = 3;
      float s = 0.05;
      float w = 0.02;
-     
+     float L;
+     L = random(2 * d, 10 * d);
      yList[i] = a * (exp((-(pow((i + d), 2))) / (2 * w)) + exp(-(pow((i - d), 2)) / (2 * w))) + (h - abs(i / s) - i) * exp(-(pow((7 * i), 2)) / 2);
-     
+     yList[i] = i - ceil(i/L - 0.5) * L;
+     **/
      // Source: https://www.reddit.com/r/Physics/comments/30royq/whats_the_equation_of_a_human_heart_beat/
      // egc(x) = a*(e^((-(x + d)^2) / (2*w)) + e^((-(x - d)^2) / (2*w))) + (h - abs(x / s) - x) e^((-(7*x)^2) / 2)
      // For: a = 0.2, d = 1.4, h = 3, s = 0.05, w = 0.02.
