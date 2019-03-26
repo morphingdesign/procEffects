@@ -22,7 +22,7 @@ void setup() {
    frame001 = new FrameGeo();
    frame002 = new FrameGeo();
    frame001.structureFrame(1040, 1040, 120);
-   frame002.structureFrame(1035, 1035, 110);
+   frame002.structureFrame(1030, 1030, 118);
 }
 
 void draw() {
