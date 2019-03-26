@@ -15,7 +15,7 @@ color whiteSolid = color(255);
 
 
 float curveH = 0;
-float var = 0;
+int var = 0;
 float shiftH = 0;
 
 void setup() {
@@ -40,6 +40,14 @@ void draw() {
   //drawCurveArray(numOfCurves, curveOffset, 100);
   drawCurveArray(numOfCurves, curveOffset, 50);
   popMatrix();
+
+  pushMatrix();
+  translate(0, 0);
+  println(var);
+  textAlign(LEFT, TOP);
+  text(var, 20, 20);
+  popMatrix();   
+  
 }
 
 void drawCurveArray(int numOfCurves, int offset, int alpha){
@@ -49,6 +57,8 @@ void drawCurveArray(int numOfCurves, int offset, int alpha){
     drawCurve(alpha);
     popMatrix();
   }
+  
+
   
 }
 
@@ -92,19 +102,19 @@ void drawCurve(int alpha){
         curveH = 0;
      }
      else{
-        curveH+=1;
+        curveH+=.1;
      }
      
      //curveH = 1;
      
      xList[i] = scalar * i;
-     var = 63;
-     shiftH++;
+     var = int(random(62, 65));
+     shiftH+=.3;
      
      // Eq. for typical sin curve 
      //yList[i] = scalar * (sin(i * freq) + shift);
      
-     yList[i] = pow(sin(i), var) * sin(i + curveH) * freqH + shiftH;
+     yList[i] = pow(sin(i + shiftH), var) * sin(i + curveH) * freqH;
      
      // Eq. for ekg graph
      //yList[i] = pow(sin(i), 63) * sin(i + curveH) * freqH;
@@ -143,4 +153,6 @@ void drawCurve(int alpha){
   }
   curveVertex(xList[xList.length-1], yList[yList.length-1]);  
   endShape();
+  
+ 
 }
