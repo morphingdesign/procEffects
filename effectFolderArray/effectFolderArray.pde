@@ -14,13 +14,20 @@ color whiteGrad5 = color(255, 5);
 color whiteSolid = color(255);
 
 FolderArray folderStructure;
+FrameGeo frame001, frame002;
 
 void setup() {
-   size(1000, 1000);  
+   size(1920, 1080);  
    folderStructure = new FolderArray();
+   frame001 = new FrameGeo();
+   frame002 = new FrameGeo();
+   frame001.structureFrame(1040, 1040, 120);
+   frame002.structureFrame(1035, 1035, 110);
 }
 
 void draw() {
    background(blackSolid);
    folderStructure.drawArray();
+   frame001.posFrame(20, 20); 
+   frame002.posFrame(25, 25); 
 }

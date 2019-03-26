@@ -9,17 +9,20 @@ class FolderArray {
   int index = 0;
   int col, row;
   Folder[] folders;
+  
+  int widthFrame = 1000;
+  int heightFrame = 1000;
 
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Constructor
   // 
   FolderArray() {
-    iteration = width / spacing - 1;
+    iteration = widthFrame / spacing - 1;
     folders = new Folder[iteration * iteration];
     col = 1;
     row = 1;
-    for(int x=spacing; x < width; x+=spacing){
-      for(int y=spacing; y < height; y+=spacing){
+    for(int x=spacing; x < widthFrame; x+=spacing){
+      for(int y=spacing; y < heightFrame; y+=spacing){
          folders[index] = new Folder(60, 40, 100, 100, x, y);
          index++;
          col++;
