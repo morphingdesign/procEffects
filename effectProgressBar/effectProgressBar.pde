@@ -13,13 +13,16 @@ color barLight = color(116, 37, 37);
 
 
 // Objects
-Progress progBar;
+Progress[] progBars = new Progress[10]; 
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 void setup() {
    size(800, 400);
-   progBar = new Progress();
+   for(int i=0; i < progBars.length; i++){
+      progBars[i] = new Progress(i * 10);
+   }
+   
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -28,7 +31,9 @@ void draw() {
   background(blackSolid);
   pushMatrix();
   translate(width/2, height/2);  
-  progBar.drawBar();
+  for(int i=0; i < progBars.length; i++){
+     progBars[i].roundRect(barBack);
+  }
   popMatrix();
 }
 
