@@ -21,10 +21,8 @@ float curveH = 0;
 int var = 0;
 float shiftH = 0;
 
-PShape tabFolder1, tabFolder2, tabFolder3;
-
-// Grid objects
-Grid gridOne, gridTwo, gridThree;
+Grid gridOne, gridTwo, gridThree;                    // Grid objects
+FrameTab tabFrameOne, tabFrameTwo, tabFrameThree;    // Tabbed frame objects
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -39,40 +37,41 @@ void setup() {
    gridTwo = new Grid(50, 400, 900, 200, whiteAlpha15, 10);
    gridThree = new Grid(50, 650, 900, 200, whiteAlpha15, 10);
    // *******************************************************
-   
-   tabFolder1 = createShape();
-   tabFolder2 = createShape();
-   tabFolder3 = createShape();
-   structureTab(tabFolder1, 60, 30, 10, whiteAlpha50, true);
-   structureTab(tabFolder2, 60, 30, 10, whiteAlpha50, true);
-   structureTab(tabFolder3, 60, 30, 10, whiteAlpha50, true);
+   // Tabbed frame objects
+   // Parameters(xPos, yPos, Width, Height, Cut Size, Line Color, Line Weight, Fill Option, Fill Color)
+   tabFrameOne = new FrameTab(440, 80, 60, 30, 10, whiteSolid, 1, true, blackSolid);
+   tabFrameTwo = new FrameTab(440, 205, 60, 30, 10, whiteSolid, 1, true, blackSolid);
+   tabFrameThree = new FrameTab(440, 330, 60, 30, 10, whiteSolid, 1, true, blackSolid);
+   // *******************************************************
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 void draw() {
   background(blackSolid);
-  // *******************************************************
-  // Grid objects
   pushMatrix();
-      translate(0, 0);
-      gridOne.drawGrid();
-      gridTwo.drawGrid();
-      gridThree.drawGrid();
-      // Parameters(Line Color)
-      gridOne.drawFrame(whiteSolid);
-      gridTwo.drawFrame(whiteSolid);
-      gridThree.drawFrame(whiteSolid);
-      // Parameters(Line Color, Stroke Weight, Line Length)
-      gridOne.drawAllCorners(whiteSolid, 4, 30);
-      gridTwo.drawAllCorners(whiteSolid, 4, 30);
-      gridThree.drawAllCorners(whiteSolid, 4, 30);
-  popMatrix();  
-  // *******************************************************
-  
-  posTab(tabFolder1, 880, 160);
-  posTab(tabFolder2, 880, 410);
-  posTab(tabFolder3, 880, 660);
+      // *******************************************************
+      // Grid objects
+          translate(0, 0);
+          gridOne.drawGrid();
+          gridTwo.drawGrid();
+          gridThree.drawGrid();
+          // Parameters(Line Color)
+          gridOne.drawFrame(whiteSolid);
+          gridTwo.drawFrame(whiteSolid);
+          gridThree.drawFrame(whiteSolid);
+          // Parameters(Line Color, Stroke Weight, Line Length)
+          gridOne.drawAllCorners(whiteSolid, 4, 30);
+          gridTwo.drawAllCorners(whiteSolid, 4, 30);
+          gridThree.drawAllCorners(whiteSolid, 4, 30);
+      // *******************************************************
+      // Tabbed frame object
+      // No parameters
+          tabFrameOne.drawFrame(); 
+          tabFrameTwo.drawFrame();
+          tabFrameThree.drawFrame();
+      // *******************************************************
+  popMatrix(); 
   
   pushMatrix();
   translate(startXPos, height/4);
@@ -95,7 +94,7 @@ void draw() {
   pushMatrix();
   translate(0, 0);
   fill(whiteAlpha100);
-  println(var);
+  //println(var);
   textSize(20);
   textAlign(CENTER, CENTER);
   text(var, 910, 173);
@@ -222,31 +221,4 @@ void drawCurve(int alpha, int option){
   }
   curveVertex(xList[xList.length-1], yList[yList.length-1]);  
   endShape();
-}
-
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-// 
-void posTab(PShape shape, int x, int y){
-   // shape function args are (shapeName, xPos, yPos)
-   shape(shape, x, y);
-}
-
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-// Structure tab
-void structureTab(PShape shape, int frameW, int frameH, int cutSize, color strokeColor, boolean fillOpt){
-   shape.beginShape();
-   if(fillOpt){
-      shape.fill(blackSolid);
-   }
-   else{
-      shape.noFill();
-   }   
-   shape.stroke(strokeColor);
-   shape.vertex(0, 0);
-   shape.vertex(frameW - cutSize, 0);
-   shape.vertex(frameW, cutSize);
-   shape.vertex(frameW, frameH);
-   shape.vertex(cutSize, frameH);
-   shape.vertex(0, frameH - cutSize);
-   shape.endShape(CLOSE);
 }
