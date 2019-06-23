@@ -23,11 +23,22 @@ float shiftH = 0;
 
 PShape tabFolder1, tabFolder2, tabFolder3;
 
+// Grid objects
+Grid gridOne, gridTwo, gridThree;
+
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 void setup() {
    size(1000, 1000);
    frameRate(10);
+   
+   // *******************************************************
+   // Grid objects
+   // Parameters(xPos, yPos, Width, Height, Line Color, Grid Spacing)
+   gridOne = new Grid(50, 150, 900, 200, whiteAlpha15, 10);
+   gridTwo = new Grid(50, 400, 900, 200, whiteAlpha15, 10);
+   gridThree = new Grid(50, 650, 900, 200, whiteAlpha15, 10);
+   // *******************************************************
    
    tabFolder1 = createShape();
    tabFolder2 = createShape();
@@ -41,28 +52,23 @@ void setup() {
 
 void draw() {
   background(blackSolid);
-
-  rectGrid(startXPos, 150, 900, 200, whiteAlpha15, 10);
-  rectFrame(startXPos, 150, 900, 200, whiteAlpha50);
-  rectGrid(startXPos, 400, 900, 200, whiteAlpha15, 10);
-  rectFrame(startXPos, 400, 900, 200, whiteAlpha50);
-  rectGrid(startXPos, 650, 900, 200, whiteAlpha15, 10);
-  rectFrame(startXPos, 650, 900, 200, whiteAlpha50);
-  
-  accentCorner(startXPos, 400, 0, 30, whiteSolid);
-  accentCorner(startXPos, 600, -HALF_PI, 30, whiteSolid);
-  accentCorner(950, 400, HALF_PI, 30, whiteSolid);
-  accentCorner(950, 600, PI, 30, whiteSolid);
-  
-  accentCorner(startXPos, 650, 0, 30, whiteSolid);
-  accentCorner(startXPos, 850, -HALF_PI, 30, whiteSolid);
-  accentCorner(950, 650, HALF_PI, 30, whiteSolid);
-  accentCorner(950, 850, PI, 30, whiteSolid);
-  
-  accentCorner(startXPos, 150, 0, 30, whiteSolid);
-  accentCorner(startXPos, 350, -HALF_PI, 30, whiteSolid);
-  accentCorner(950, 150, HALF_PI, 30, whiteSolid);
-  accentCorner(950, 350, PI, 30, whiteSolid);  
+  // *******************************************************
+  // Grid objects
+  pushMatrix();
+      translate(0, 0);
+      gridOne.drawGrid();
+      gridTwo.drawGrid();
+      gridThree.drawGrid();
+      // Parameters(Line Color)
+      gridOne.drawFrame(whiteSolid);
+      gridTwo.drawFrame(whiteSolid);
+      gridThree.drawFrame(whiteSolid);
+      // Parameters(Line Color, Stroke Weight, Line Length)
+      gridOne.drawAllCorners(whiteSolid, 4, 30);
+      gridTwo.drawAllCorners(whiteSolid, 4, 30);
+      gridThree.drawAllCorners(whiteSolid, 4, 30);
+  popMatrix();  
+  // *******************************************************
   
   posTab(tabFolder1, 880, 160);
   posTab(tabFolder2, 880, 410);
@@ -219,33 +225,6 @@ void drawCurve(int alpha, int option){
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-// Rectangle frame for each wave display
-void rectFrame(int x, int y, int w, int h, int frameColor){
-  pushMatrix();
-  translate(x, y);
-  noFill();
-  stroke(frameColor);
-  rect(0, 0, w, h);
-  popMatrix();  
-}
-
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-// 
-void rectGrid(int x, int y, int w, int h, int bkgdGridColor, int gridSpace){
-    pushMatrix();
-    strokeWeight(1);
-    stroke(bkgdGridColor);
-    translate(x, y);           // X-value used to vary start position
-    for(int i=0; i < h; i+=gridSpace){
-       line(0, i, w, i);       // Horizontal Lines
-    }                              // Line spacing varies by passed through parameter
-    for(int i=0; i < w; i+=gridSpace){
-       line(i, 0, i, h);       // Vertical Lines
-    }
-    popMatrix();
-}
-
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // 
 void posTab(PShape shape, int x, int y){
    // shape function args are (shapeName, xPos, yPos)
@@ -270,17 +249,4 @@ void structureTab(PShape shape, int frameW, int frameH, int cutSize, color strok
    shape.vertex(cutSize, frameH);
    shape.vertex(0, frameH - cutSize);
    shape.endShape(CLOSE);
-}
-
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-// Creates a single iteration of a line with short perpendicular lines at both ends
-void accentCorner(int x, int y, float rotAngle, int length, color lineColor){  // Length of long line defined by parameter
-    pushMatrix();
-    translate(x, y);
-    rotate(rotAngle);
-    strokeWeight(2);
-    stroke(lineColor);
-    line(0, 0, length, 0);     
-    line(0, 0, 0, length);     
-    popMatrix();
 }
