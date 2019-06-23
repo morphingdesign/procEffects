@@ -1,17 +1,12 @@
 
 // Color scheme
 color blackSolid = color(0);
-color blackGrad0 = color(0, 0);
-color blueGrad50 = color(0, 0, 255, 50);
-color blueGrad10 = color(0, 0, 255, 10);
-color blueSolid = color(0, 0, 255);
-color blueSolid150 = color(0, 0, 150);
 color redSolid = color(255, 0, 0);
 color greenSolid = color(0, 255, 0);
-color whiteGrad100 = color(255, 100);
-color whiteGrad50 = color(255, 50);
-color whiteGrad15 = color(255, 15);
-color whiteGrad5 = color(255, 5);
+color whiteAlpha100 = color(255, 100);
+color whiteAlpha50 = color(255, 50);
+color whiteAlpha15 = color(255, 15);
+color whiteAlpha5 = color(255, 5);
 color whiteSolid = color(255);
 
 int frameWidth = 900;      // Width of wave curve
@@ -37,9 +32,9 @@ void setup() {
    tabFolder1 = createShape();
    tabFolder2 = createShape();
    tabFolder3 = createShape();
-   structureTab(tabFolder1, 60, 30, 10, whiteGrad50, true);
-   structureTab(tabFolder2, 60, 30, 10, whiteGrad50, true);
-   structureTab(tabFolder3, 60, 30, 10, whiteGrad50, true);
+   structureTab(tabFolder1, 60, 30, 10, whiteAlpha50, true);
+   structureTab(tabFolder2, 60, 30, 10, whiteAlpha50, true);
+   structureTab(tabFolder3, 60, 30, 10, whiteAlpha50, true);
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -47,12 +42,12 @@ void setup() {
 void draw() {
   background(blackSolid);
 
-  rectGrid(startXPos, 150, 900, 200, whiteGrad15, 10);
-  rectFrame(startXPos, 150, 900, 200, whiteGrad50);
-  rectGrid(startXPos, 400, 900, 200, whiteGrad15, 10);
-  rectFrame(startXPos, 400, 900, 200, whiteGrad50);
-  rectGrid(startXPos, 650, 900, 200, whiteGrad15, 10);
-  rectFrame(startXPos, 650, 900, 200, whiteGrad50);
+  rectGrid(startXPos, 150, 900, 200, whiteAlpha15, 10);
+  rectFrame(startXPos, 150, 900, 200, whiteAlpha50);
+  rectGrid(startXPos, 400, 900, 200, whiteAlpha15, 10);
+  rectFrame(startXPos, 400, 900, 200, whiteAlpha50);
+  rectGrid(startXPos, 650, 900, 200, whiteAlpha15, 10);
+  rectFrame(startXPos, 650, 900, 200, whiteAlpha50);
   
   accentCorner(startXPos, 400, 0, 30, whiteSolid);
   accentCorner(startXPos, 600, -HALF_PI, 30, whiteSolid);
@@ -93,7 +88,7 @@ void draw() {
 
   pushMatrix();
   translate(0, 0);
-  fill(whiteGrad100);
+  fill(whiteAlpha100);
   println(var);
   textSize(20);
   textAlign(CENTER, CENTER);
@@ -115,7 +110,7 @@ void drawCurveArray(int numOfCurves, int offset, int alpha, int option){
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+// Options for curve types
 void drawCurve(int alpha, int option){
   int scalar = 5;
   
@@ -224,7 +219,7 @@ void drawCurve(int alpha, int option){
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+// Rectangle frame for each wave display
 void rectFrame(int x, int y, int w, int h, int frameColor){
   pushMatrix();
   translate(x, y);
