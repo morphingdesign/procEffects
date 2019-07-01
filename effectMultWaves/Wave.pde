@@ -1,24 +1,31 @@
 // Class for rectangular grid graphics construction
 class Wave {  
   
-  // Class Variables
+  // Class Variables  
   int xPos;
   int yPos;
-  int wGridSize;
-  int hGridSize;
-  int gridColor;
-  int gridSpace;  
+  int waveColor;
+  int waveAlpha;
+  int waveAlphaDelta;
+  int waveOption;
+  
+  // Local Variables
+  int numOfCurves = 1;
+  int curveOffset = 1;
+   
+   // params: int x, int y, int lineColor, int lineAlpha, int option
+   // first curve params(50, height/4, whiteSolid, 150, 1)
    
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Constructor
   // Used to construct rectangular grid graphics
-  Wave(int x, int y, int w, int h, int gridLineColor, int gridSpacing, int option){
+  Wave(int x, int y, int lineColor, int lineAlpha, int alphaDelta, int option){
       this.xPos = x;
       this.yPos = y;
-      this.wGridSize = w;
-      this.hGridSize = h;
-      this.gridColor = gridLineColor;
-      this.gridSpace = gridSpacing; 
+      this.waveColor = lineColor;
+      this.waveAlpha = lineAlpha;
+      this.waveAlphaDelta = alphaDelta;
+      this.waveOption = option; 
   }
  
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,27 +33,27 @@ class Wave {
  
   void drawWave(){
       pushMatrix();
-          translate(startXPos, height/4);
-          drawCurveArray(numOfCurves, curveOffset, 150, 1);
-          drawCurveArray(numOfCurves, curveOffset, 100, 1);
+          translate(xPos, yPos);
+          drawCurveArray(numOfCurves, curveOffset, waveAlpha);
+          drawCurveArray(numOfCurves, curveOffset, waveAlpha - waveAlphaDelta);
       popMatrix();  
   }
  
  
   // *******************************************************
   // Wave array  
-  void drawCurveArray(int numOfCurves, int offset, int alpha, int option){
+  void drawCurveArray(int numOfCurves, int offset, int alpha){
       for(int i=0; i < numOfCurves; i++){
           pushMatrix();
           translate(0, (i * offset));
-          drawCurve(alpha, option);
+          drawCurve(alpha);
           popMatrix();
       }
   }
   
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Options for curve types
-  void drawCurve(int alpha, int option){
+  void drawCurve(int alpha){
       int scalar = 5;
       
       // Adding the scalar at the end projects the wave beyond the x-bound limit
@@ -61,10 +68,10 @@ class Wave {
       float var2 = 0;
       
       noFill();
-      stroke(whiteSolid, alpha);
+      stroke(waveColor, alpha);
       strokeWeight(1);
       
-      switch(option){
+      switch(waveOption){
           case 1:
               for(int i=0; i < arrayLength; i++){             
                  //freqH = 50;
