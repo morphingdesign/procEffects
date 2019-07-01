@@ -15,10 +15,6 @@ int curveXOffset = 25;
 
 int multiplier = 40;
 
-float curveH = 0;
-int var = 0;
-float shiftH = 0;
-
 Grid gridOne, gridTwo, gridThree;                    // Grid objects
 FrameTab tabFrameOne, tabFrameTwo, tabFrameThree;    // Tabbed frame objects
 Wave waveOne, waveTwo, waveThree;                    // Wave option objects
@@ -89,7 +85,7 @@ void draw() {
   fill(whiteAlpha100);
   textSize(20);
   textAlign(CENTER, CENTER);
-  text(var, 910, 173);
+  text(int(random(62, 65)), 910, 173);
   text(int(random(85, 189)), 910, 423);
   text(int(random(124, 138)), 910, 673);
   popMatrix();   

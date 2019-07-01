@@ -12,9 +12,9 @@ class Wave {
   // Local Variables
   int numOfCurves = 1;
   int curveOffset = 1;
-   
-   // params: int x, int y, int lineColor, int lineAlpha, int option
-   // first curve params(50, height/4, whiteSolid, 150, 1)
+  float curveH = 0;
+  int var = 0;
+  float shiftH = 0;
    
   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   // Class Constructor
@@ -51,7 +51,7 @@ class Wave {
       }
   }
   
-  // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  // *******************************************************
   // Options for curve types
   void drawCurve(int alpha){
       int scalar = 5;
