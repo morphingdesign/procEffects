@@ -34,9 +34,9 @@ void setup() {
    // *******************************************************
    // Tabbed frame objects
    // Parameters(xPos, yPos, Width, Height, Cut Size, Line Color, Line Weight, Fill Option, Fill Color)
-   tabFrameOne = new FrameTab(440, 80, 60, 30, 10, whiteSolid, 1, true, blackSolid);
-   tabFrameTwo = new FrameTab(440, 205, 60, 30, 10, whiteSolid, 1, true, blackSolid);
-   tabFrameThree = new FrameTab(440, 330, 60, 30, 10, whiteSolid, 1, true, blackSolid);
+   tabFrameOne = new FrameTab(875, 163, 60, 30, 10, whiteSolid, 1, true, blackSolid);
+   tabFrameTwo = new FrameTab(875, 413, 60, 30, 10, whiteSolid, 1, true, blackSolid);
+   tabFrameThree = new FrameTab(875, 663, 60, 30, 10, whiteSolid, 1, true, blackSolid);
    // *******************************************************
    // Wave option objects
    // Parameters(xPos, yPos, Line Color, Line Alpha, Alpha Delta, Option)
@@ -71,22 +71,17 @@ void draw() {
           tabFrameOne.drawFrame(); 
           tabFrameTwo.drawFrame();
           tabFrameThree.drawFrame();
+      // Add centered text to frame object
+      // Parameters: Text Color, Text Size, Text Value
+          tabFrameOne.drawText(whiteAlpha100, 20, int(random(62, 65)));    
+          tabFrameTwo.drawText(whiteAlpha100, 20, int(random(85, 189))); 
+          tabFrameThree.drawText(whiteAlpha100, 20, int(random(124, 138)));         
       // *******************************************************
       // Wave option objects
       // No parameters
           waveOne.drawWave();
           waveTwo.drawWave();
           waveThree.drawWave();
-      // *******************************************************    
-  popMatrix(); 
-
-  pushMatrix();
-  translate(0, 0);
-  fill(whiteAlpha100);
-  textSize(20);
-  textAlign(CENTER, CENTER);
-  text(int(random(62, 65)), 910, 173);
-  text(int(random(85, 189)), 910, 423);
-  text(int(random(124, 138)), 910, 673);
-  popMatrix();   
+      // ******************************************************* 
+  popMatrix();  
 }

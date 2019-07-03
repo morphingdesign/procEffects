@@ -54,6 +54,20 @@ class FrameTab {
      
      // Position frame
      // shape function args are (shapeName, xPos, yPos)
-     shape(shape, xFramePos, yFramePos);  
+     shape(shape, 0, 0);  
   }  
+  
+  // *******************************************************
+  // Draw centered text
+  void drawText(color textColor, int textSize, int textValue){
+    pushMatrix();
+    translate(xFramePos + wFrameSize/2, yFramePos + hFrameSize/2);
+    fill(textColor);
+    textSize(textSize);
+    textAlign(CENTER, CENTER);
+    // xPos and yPos for text is compensated by translate(), so the
+    // text origin is at align center 0,0.
+    text(textValue, 0, 0);   
+    popMatrix();
+  }
 }
